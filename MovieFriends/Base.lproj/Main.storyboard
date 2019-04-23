@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="470-BX-VrZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="470-BX-VrZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
-        <scene sceneID="kq9-Nv-rHL">
-            <objects>
-                <collectionViewController id="iuo-CR-Fzb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movies" id="TVf-BZ-xGT" userLabel="Movies"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="HD1-IE-6lE" id="eHF-Jb-2HB"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J4R-tM-aRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="HD1-IE-6lE">
-                    <connections>
-                        <outlet property="delegate" destination="iuo-CR-Fzb" id="GRb-2j-UeL"/>
-                        <outlet property="searchContentsController" destination="iuo-CR-Fzb" id="Spt-ns-0qK"/>
-                        <outlet property="searchResultsDataSource" destination="iuo-CR-Fzb" id="oLa-cA-Wk6"/>
-                        <outlet property="searchResultsDelegate" destination="iuo-CR-Fzb" id="pRN-ji-TcY"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="481" y="-986"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="N5U-KX-R8E">
             <objects>
@@ -107,10 +86,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="iuo-CR-Fzb" id="zQz-Zw-SFf"/>
-                                    <outlet property="delegate" destination="iuo-CR-Fzb" id="vbv-2j-yMV"/>
-                                </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eYO-Xw-Gz1">
                                 <rect key="frame" x="0.0" y="387" width="375" height="118"/>
@@ -180,10 +155,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="iuo-CR-Fzb" id="PdS-4Z-lB2"/>
-                                    <outlet property="delegate" destination="iuo-CR-Fzb" id="ws4-7i-a7o"/>
-                                </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-gz-cvU">
                                 <rect key="frame" x="16" y="179" width="59" height="21"/>
@@ -220,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhI-RM-bPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205.5999999999999" y="-986.35682158920542"/>
+            <point key="canvasLocation" x="478" y="-978"/>
         </scene>
         <!--Profile-->
         <scene sceneID="yq7-7T-qhF">
@@ -459,7 +430,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4l-e1-r2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2004" y="-986"/>
+            <point key="canvasLocation" x="1206" y="-978"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="veP-KN-jUr">
@@ -473,7 +444,7 @@
                     <connections>
                         <segue destination="p2z-kb-apt" kind="relationship" relationship="viewControllers" id="Sk6-Vq-zd3"/>
                         <segue destination="JtM-hN-ECq" kind="relationship" relationship="viewControllers" id="0tK-Fz-XVR"/>
-                        <segue destination="iuo-CR-Fzb" kind="relationship" relationship="viewControllers" id="vJT-wE-qk6"/>
+                        <segue destination="IQo-Zk-u5H" kind="relationship" relationship="viewControllers" id="gqw-3Y-TDd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOg-yT-rar" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -607,7 +578,7 @@
     </scenes>
     <resources>
         <image name="hamster" width="800" height="450"/>
-        <image name="marvel" width="504" height="746.280029296875"/>
+        <image name="marvel" width="1400" height="2073"/>
         <image name="titanic" width="1371" height="2016"/>
     </resources>
 </document>
