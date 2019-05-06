@@ -10,50 +10,65 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var pop1: UIButton!
+    
+    @IBOutlet weak var image1: UIImageView!
+    
+    let baseURL = "https://api.themoviedb.org/3/trending/movie/week?api_key="
+    let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
+    
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
-        let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
-        let url = URL(string: "https://api.themoviedb.org/3/trending/movie/week?api_key=" + apiKey)!
         
-        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let error = error { print(error); return }
-            do {
-                let decoder = JSONDecoder()
-                // this line is only needed if all JSON keys are decoded
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let result = try decoder.decode(Item.self, from: data!)
-                DispatchQueue.main.async{
-                    let imageData = Item.results.poster
-                    
-                    
-                }
-            } catch { print(error) }
-        }
-        task.resume()
-        // Do any additional setup after loading the view.
+        getJSON()
     }
     
-    struct Item: Decodable {
-        let results: [Results]
-    }
-    struct Results: Decodable{
-        let id: String
-        let title: String
-        let poster: String
-    }
+    func getJSON() {
+        var url = self.baseURL
+        url = url + apiKey
+        
+        let request = URL(string: url)!
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) -> Void in
+            
+            if error != nil {
+                
+                print("There was an error!")
+            } else {
+                do {
+                   
+                    let swiftyJSON = try JSON(data: data!)
+                    let theTitle = swiftyJSON["results"].arrayValue
+                    let theImage = swiftyJSON["results"][0]["poster_path"].string!
+                    
+                    let theImageURL = URL(string: theImage)
+                    print("WAter is good")
+                    if let ImageData = NSData(contentsOf: theImageURL! as URL) {
+                        self.image1.image = UIImage(data: ImageData as Data)
+                        
+                        print("The image loaded")
+                    }
 
-    /*
-    // MARK: - Navigation
+                    
+                    for title in theTitle {
+                        let titles = title["title"].stringValue
+                        //print(titles)
+                    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+                    let theTest = "Chicken nugget"
+                    let theTest2 = "Water cup"
+                    //print(theTest2)
+                    print(theImage)
+                    //print(theTest)
+                    
+                    
+                } catch {
+                    //Catch and handle the exception
+                }
+            }
+        }
+        
+        task.resume()
     }
-    */
 
 }

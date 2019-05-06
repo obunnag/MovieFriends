@@ -73,6 +73,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="marvel"/>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sT4-cw-qCY">
+                                <rect key="frame" x="16" y="470" width="116" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b3J-VJ-RsJ"/>
@@ -80,7 +84,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="qqh-v0-KGi" userLabel="Home"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="pop1" destination="osh-Vx-WXX" id="vNd-t7-rIM"/>
+                        <outlet property="image1" destination="sT4-cw-qCY" id="sBu-bz-ywv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhI-RM-bPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
