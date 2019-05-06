@@ -39,16 +39,17 @@ class HomeViewController: UIViewController {
                    
                     let swiftyJSON = try JSON(data: data!)
                     let theTitle = swiftyJSON["results"].arrayValue
-                    let theImage = swiftyJSON["results"][0]["poster_path"].string!
-                    
+                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][0]["poster_path"].string!
+                    print(theImage)
                     let theImageURL = URL(string: theImage)
                     print("WAter is good")
-                    if let ImageData = NSData(contentsOf: theImageURL! as URL) {
-                        self.image1.image = UIImage(data: ImageData as Data)
+                    DispatchQueue.main.async{
+                        if let ImageData = NSData(contentsOf: theImageURL!) {
+                            self.image1.image = UIImage(data: ImageData as Data)
                         
-                        print("The image loaded")
+                            print("The image loaded")
+                        }
                     }
-
                     
                     for title in theTitle {
                         let titles = title["title"].stringValue
