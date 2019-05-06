@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
                     let theImageURL2 = URL(string: theImage2)
                     let theImageURL3 = URL(string: theImage3)
                     let theImageURL4 = URL(string: theImage4)
-                    print("WAter is good")
+                    
                     DispatchQueue.main.async{
                         if let ImageData1 = NSData(contentsOf: theImageURL1!) {
                             self.button1.setImage(UIImage(data: ImageData1 as Data), for: .normal)
