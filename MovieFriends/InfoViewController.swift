@@ -26,6 +26,8 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var mRating: UILabel!
     @IBOutlet weak var save: UIButton!
     
+    
+    var chosenImage: UIImage?
     let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
     
     

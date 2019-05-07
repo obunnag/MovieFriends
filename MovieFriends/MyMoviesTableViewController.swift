@@ -12,7 +12,6 @@ import CoreData
 class MyMoviesTableViewController: UITableViewController {
     
     var movies: [NSManagedObject] = []
-    var movieData: String = ""
     
     @IBAction func doneClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)

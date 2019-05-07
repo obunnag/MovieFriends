@@ -18,11 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search for a movie!" translatesAutoresizingMaskIntoConstraints="NO" id="2Aw-MB-u1S">
-                                <rect key="frame" x="0.0" y="35" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-gz-cvU">
                                 <rect key="frame" x="16" y="102" width="59" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -391,48 +386,52 @@
             </objects>
             <point key="canvasLocation" x="-638" y="-140"/>
         </scene>
-        <!--Friends-->
+        <!--Search-->
         <scene sceneID="CXF-Zw-Wzv">
             <objects>
-                <tableViewController id="JtM-hN-ECq" sceneMemberID="viewController">
+                <tableViewController id="JtM-hN-ECq" customClass="SearchTableViewController" customModule="MovieFriends" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Thb-fp-4MI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="TfQ-Xr-YN3">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="koR-bj-ckM">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="130" id="koR-bj-ckM" customClass="SearchTableViewCell" customModule="MovieFriends" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="koR-bj-ckM" id="Fyu-Rh-ynH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYq-Pj-yYc">
-                                            <rect key="frame" x="16" y="11" width="61" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5yA-V6-H4u">
+                                            <rect key="frame" x="16" y="18" width="73.5" height="93.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5yA-V6-H4u" secondAttribute="height" multiplier="73:93" id="UKa-pv-x9x"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Titanic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYq-Pj-yYc">
+                                            <rect key="frame" x="114" y="55" width="220" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="centerY" secondItem="Fyu-Rh-ynH" secondAttribute="centerY" id="CFr-CH-S4P"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="top" secondItem="Fyu-Rh-ynH" secondAttribute="topMargin" constant="7" id="QgA-OV-HuS"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="leading" secondItem="Fyu-Rh-ynH" secondAttribute="leadingMargin" id="dQH-Ad-iDL"/>
+                                        <constraint firstItem="BYq-Pj-yYc" firstAttribute="leading" secondItem="5yA-V6-H4u" secondAttribute="trailing" constant="24" id="hj9-UJ-0yJ"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="centerY" secondItem="BYq-Pj-yYc" secondAttribute="centerY" id="jGO-cS-3mT"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="RhC-FX-qgc">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RhC-FX-qgc" id="Yap-fK-I76">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5T-aX-bGz">
-                                            <rect key="frame" x="16" y="11" width="63" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mImage" destination="5yA-V6-H4u" id="LAY-4G-qyh"/>
+                                    <outlet property="mTitle" destination="BYq-Pj-yYc" id="ZKP-Ej-H9X"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -440,11 +439,11 @@
                             <outlet property="delegate" destination="JtM-hN-ECq" id="rv0-ua-PwI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Friends" id="AXf-vL-Tf6" userLabel="Friends"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="AXf-vL-Tf6" userLabel="Search"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0NA-zb-QqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="359"/>
+            <point key="canvasLocation" x="477.60000000000002" y="358.4707646176912"/>
         </scene>
         <!--My Movies Table View Controller-->
         <scene sceneID="kFZ-bS-PdX">
