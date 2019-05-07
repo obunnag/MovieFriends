@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class MyMoviesTableViewController: UITableViewController {
     
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    var movies: [NSManagedObject] = []
+    var movieData: String = ""
     
-
-    @IBAction func doneButtonClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+    @IBAction func doneClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -27,28 +27,52 @@ class MyMoviesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+        
+        do {
+            movies = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return movies.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cellIdentifier = "MoviesTableViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyMoviesTableViewCell
+        
         // Configure the cell...
+        let movie = movies[indexPath.row]
+        
+        cell.mTitle.text = movie.value(forKey: "title") as? String
+        cell.mImage.image = UIImage(data: movie.value(forKey: "moviePoster") as! Data)
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -58,17 +82,28 @@ class MyMoviesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+        
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            managedContext.delete(movies[indexPath.row])
+            do {
+                try managedContext.save()
+                movies = try managedContext.fetch(fetchRequest)
+                tableView.reloadData()
+            } catch
+            {
+                print("Could not load save data: \(error.localizedDescription)")
+            }
+        }
     }
-    */
+
 
     /*
     // Override to support rearranging the table view.

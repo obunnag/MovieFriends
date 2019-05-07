@@ -10,6 +10,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var movieIDInput: String = ""
+    var id1: String = ""
+    var id2: String = ""
+    var id3: String = ""
+    var id4: String = ""
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -26,6 +31,29 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var button11: UIButton!
     @IBOutlet weak var button12: UIButton!
     
+    @IBAction func movieDesc(sender: AnyObject){
+    guard let button = sender as? UIButton else{
+    return
+    }
+    
+    switch button.tag{
+    case 1:
+        movieIDInput = id1
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 2:
+        movieIDInput = id2
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 3:
+        movieIDInput = id3
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 4:
+        movieIDInput = id4
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    default:
+        print("Movie not found")
+        return
+    }
+    }
     
     let baseURLPop = "https://api.themoviedb.org/3/trending/movie/week?api_key="
     let baseURLPlaying = "https://api.themoviedb.org/3/movie/now_playing?api_key="
@@ -73,15 +101,19 @@ class HomeViewController: UIViewController {
                     DispatchQueue.main.async{
                         if let ImageData1 = NSData(contentsOf: theImageURL1!) {
                             self.button1.setImage(UIImage(data: ImageData1 as Data), for: .normal)
+                            self.id1 = String(swiftyJSON["results"][0]["id"].int!)
                         }
                         if let ImageData2 = NSData(contentsOf: theImageURL2!) {
                             self.button2.setImage(UIImage(data: ImageData2 as Data), for: .normal)
+                            self.id2 = String(swiftyJSON["results"][1]["id"].int!)
                         }
                         if let ImageData3 = NSData(contentsOf: theImageURL3!) {
                             self.button3.setImage(UIImage(data: ImageData3 as Data), for: .normal)
+                            self.id3 = String(swiftyJSON["results"][2]["id"].int!)
                         }
                         if let ImageData4 = NSData(contentsOf: theImageURL4!) {
                             self.button4.setImage(UIImage(data: ImageData4 as Data), for: .normal)
+                            self.id4 = String(swiftyJSON["results"][3]["id"].int!)
                         }
                     }
                     
@@ -90,11 +122,6 @@ class HomeViewController: UIViewController {
                         //print(titles)
                     }
 
-                    let theTest = "Chicken nugget"
-                    let theTest2 = "Water cup"
-                    //print(theTest2)
-                    //print(theTest)
-                    
                     
                 } catch {
                     //Catch and handle the exception
@@ -218,5 +245,12 @@ class HomeViewController: UIViewController {
         
         task3.resume()
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let destVC: InfoViewController = segue.destination as! InfoViewController
+        destVC.movieData = movieIDInput
+    }
 
 }
+
