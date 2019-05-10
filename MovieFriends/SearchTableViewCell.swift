@@ -10,8 +10,7 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     
-    let baseURL = "https://api.themoviedb.org/3/search/movie?api_key="
-    let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
+    
     
     @IBOutlet weak var mImage: UIImageView!
     @IBOutlet weak var mTitle: UILabel!
@@ -28,5 +27,6 @@ class SearchTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

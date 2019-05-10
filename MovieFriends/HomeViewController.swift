@@ -15,6 +15,14 @@ class HomeViewController: UIViewController {
     var id2: String = ""
     var id3: String = ""
     var id4: String = ""
+    var id5: String = ""
+    var id6: String = ""
+    var id7: String = ""
+    var id8: String = ""
+    var id9: String = ""
+    var id10: String = ""
+    var id11: String = ""
+    var id12: String = ""
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -48,6 +56,30 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "movieSegue", sender: self)
     case 4:
         movieIDInput = id4
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 5:
+        movieIDInput = id5
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 6:
+        movieIDInput = id6
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 7:
+        movieIDInput = id7
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 8:
+        movieIDInput = id8
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 9:
+        movieIDInput = id9
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 10:
+        movieIDInput = id10
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 11:
+        movieIDInput = id11
+        performSegue(withIdentifier: "movieSegue", sender: self)
+    case 12:
+        movieIDInput = id12
         performSegue(withIdentifier: "movieSegue", sender: self)
     default:
         print("Movie not found")
@@ -164,15 +196,19 @@ class HomeViewController: UIViewController {
                     DispatchQueue.main.async{
                         if let ImageData5 = NSData(contentsOf: theImageURL5!) {
                             self.button5.setImage(UIImage(data: ImageData5 as Data), for: .normal)
+                            self.id5 = String(swiftyJSON["results"][0]["id"].int!)
                         }
                         if let ImageData6 = NSData(contentsOf: theImageURL6!) {
                             self.button6.setImage(UIImage(data: ImageData6 as Data), for: .normal)
+                            self.id6 = String(swiftyJSON["results"][1]["id"].int!)
                         }
                         if let ImageData7 = NSData(contentsOf: theImageURL7!) {
                             self.button7.setImage(UIImage(data: ImageData7 as Data), for: .normal)
+                            self.id7 = String(swiftyJSON["results"][2]["id"].int!)
                         }
                         if let ImageData8 = NSData(contentsOf: theImageURL8!) {
                             self.button8.setImage(UIImage(data: ImageData8 as Data), for: .normal)
+                            self.id8 = String(swiftyJSON["results"][3]["id"].int!)
                         }
                     }
                     
@@ -221,15 +257,19 @@ class HomeViewController: UIViewController {
                     DispatchQueue.main.async{
                         if let ImageData9 = NSData(contentsOf: theImageURL9!) {
                             self.button9.setImage(UIImage(data: ImageData9 as Data), for: .normal)
+                            self.id9 = String(swiftyJSON["results"][0]["id"].int!)
                         }
                         if let ImageData10 = NSData(contentsOf: theImageURL10!) {
                             self.button10.setImage(UIImage(data: ImageData10 as Data), for: .normal)
+                            self.id10 = String(swiftyJSON["results"][1]["id"].int!)
                         }
                         if let ImageData11 = NSData(contentsOf: theImageURL11!) {
                             self.button11.setImage(UIImage(data: ImageData11 as Data), for: .normal)
+                            self.id11 = String(swiftyJSON["results"][2]["id"].int!)
                         }
                         if let ImageData12 = NSData(contentsOf: theImageURL12!) {
                             self.button12.setImage(UIImage(data: ImageData12 as Data), for: .normal)
+                            self.id12 = String(swiftyJSON["results"][3]["id"].int!)
                         }
                     }
                     

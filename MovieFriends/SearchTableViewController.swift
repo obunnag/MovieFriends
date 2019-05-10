@@ -8,19 +8,21 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController {
-    
-    //let searchController = UISearchController(searchResultsController: nil)
-    //let movieData = NSData
-    //var movies: JSON?
-    //var filteredMovies = [JSON]()
-    //weak var vc = ViewController()
-    
+class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 
+    @IBOutlet weak var searchBar: UITextField!
+    
+    var total: Int = 0
+    
+    let baseURL = "https://api.themoviedb.org/3/search/movie?api_key="
+    let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
+    var query: String = ""
+    var mImage: UIImage? = nil
+    var mTitle: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.searchBar.delegate = self as? UITextFieldDelegate
     }
     
 
@@ -32,8 +34,7 @@ class SearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
-        //return filteredAnswers!.count
+        return total
     }
 
     
@@ -43,9 +44,99 @@ class SearchTableViewController: UITableViewController {
 
         // Configure the cell...
         
-
+        let url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + query
+        
+        let request = URL(string: url)!
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) -> Void in
+            
+            if error != nil {
+                
+                print("There was an error!")
+            } else {
+                do {
+                    
+                    let swiftyJSON = try JSON(data: data!)
+                    
+                    //Movie poster
+                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][indexPath.row]["poster_path"].string!
+                    let theImageURL = URL(string: theImage)
+                    
+                    
+                    DispatchQueue.main.async{
+                        if let ImageData = NSData(contentsOf: theImageURL!) {
+                            self.mImage = UIImage(data: ImageData as Data)!
+                        }
+                        
+                        self.title = swiftyJSON["results"][indexPath.row]["title"].string!
+                        self.total = swiftyJSON["total_results"].int!
+                    }
+                    
+                    
+                } catch {
+                    //Catch and handle the exception
+                }
+            }
+        }
+        
+        task.resume()
+        tableView.reloadData()
         return cell
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        //textField.resignFirstResponder()
+        self.query = searchBar.text ?? ""
+        print(self.query + " searched!")
+        tableView.reloadData()
+        //getJSON()
+        return true
+    }
+ 
+//    func getJSON() {
+//        let url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + query
+//
+//        let request = URL(string: url)!
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (data, response, error) -> Void in
+//
+//            if error != nil {
+//
+//                print("There was an error!")
+//            } else {
+//                do {
+//
+//                    let swiftyJSON = try JSON(data: data!)
+//
+//                    //Movie poster
+//                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][indexPath.row]["poster_path"].string!
+//                    let theImageURL = URL(string: theImage)
+//
+//                    //Movie background
+//                    let theBack = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][indexPath.row]["backdrop_path"].string!
+//                    let theBackURL = URL(string: theBack)
+//
+//                    DispatchQueue.main.async{
+//                        if let ImageData = NSData(contentsOf: theImageURL!) {
+//                            self.mImage = UIImage(data: ImageData as Data)!
+//                        }
+//
+//                        self.title = swiftyJSON["title"].string!
+//
+//                    }
+//
+//
+//                } catch {
+//                    //Catch and handle the exception
+//                }
+//            }
+//        }
+//
+//        task.resume()
+//    }
+    
+ 
     
 
     /*
