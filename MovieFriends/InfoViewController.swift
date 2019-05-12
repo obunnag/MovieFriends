@@ -71,7 +71,7 @@ class InfoViewController: UIViewController {
                         self.mRelease.text = "Released: " + swiftyJSON["release_date"].string!
                         self.mRuntime.text = String(swiftyJSON["runtime"].int!) + " min"
                         self.mOverview.text = swiftyJSON["overview"].string!
-                        self.mRating.text = String(swiftyJSON["vote_average"].int!)
+                        self.mRating.text = "Avg Rating: " + String(swiftyJSON["vote_average"].int!)
                         self.idNum = String(swiftyJSON["id"].int!)
                     
                     
