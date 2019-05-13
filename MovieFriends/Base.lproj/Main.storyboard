@@ -452,24 +452,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5yA-V6-H4u">
-                                            <rect key="frame" x="16" y="18" width="73.5" height="93.5"/>
+                                            <rect key="frame" x="16" y="18" width="74.5" height="95"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="5yA-V6-H4u" secondAttribute="height" multiplier="73:93" id="UKa-pv-x9x"/>
+                                                <constraint firstAttribute="width" secondItem="5yA-V6-H4u" secondAttribute="height" multiplier="73:93" id="3fl-lc-loh"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Titanic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYq-Pj-yYc">
-                                            <rect key="frame" x="114" y="55" width="220" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titanic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYq-Pj-yYc">
+                                            <rect key="frame" x="110.5" y="55" width="249" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="249" id="O1o-wh-9pi"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="centerY" secondItem="Fyu-Rh-ynH" secondAttribute="centerY" id="CFr-CH-S4P"/>
-                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="top" secondItem="Fyu-Rh-ynH" secondAttribute="topMargin" constant="7" id="QgA-OV-HuS"/>
-                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="leading" secondItem="Fyu-Rh-ynH" secondAttribute="leadingMargin" id="dQH-Ad-iDL"/>
-                                        <constraint firstItem="BYq-Pj-yYc" firstAttribute="leading" secondItem="5yA-V6-H4u" secondAttribute="trailing" constant="24" id="hj9-UJ-0yJ"/>
-                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="centerY" secondItem="BYq-Pj-yYc" secondAttribute="centerY" id="jGO-cS-3mT"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="centerY" secondItem="BYq-Pj-yYc" secondAttribute="centerY" id="9EL-9U-Uto"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="leading" secondItem="Fyu-Rh-ynH" secondAttribute="leadingMargin" id="BOU-zt-JZc"/>
+                                        <constraint firstItem="BYq-Pj-yYc" firstAttribute="leading" secondItem="5yA-V6-H4u" secondAttribute="trailing" constant="20" id="Fdo-EB-YZf"/>
+                                        <constraint firstItem="BYq-Pj-yYc" firstAttribute="leading" secondItem="5yA-V6-H4u" secondAttribute="trailing" constant="20" id="Rj6-e4-OxW"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="BYq-Pj-yYc" secondAttribute="bottom" constant="44" id="dcJ-Py-gHB"/>
+                                        <constraint firstItem="5yA-V6-H4u" firstAttribute="top" secondItem="Fyu-Rh-ynH" secondAttribute="topMargin" constant="7" id="exb-J7-JuK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5yA-V6-H4u" secondAttribute="bottom" constant="7" id="oDb-Yd-94r"/>
+                                        <constraint firstItem="BYq-Pj-yYc" firstAttribute="trailing" secondItem="Fyu-Rh-ynH" secondAttribute="trailingMargin" id="vSx-CT-yg3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

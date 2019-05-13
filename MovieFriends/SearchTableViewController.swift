@@ -68,6 +68,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("taco")
         return searchResults.count
     }
 
@@ -79,13 +80,12 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate{
         // Configure the cell...
         
         cell.mTitle.text = searchResults[indexPath.row]["title"].string!
-        print("hi")
+        //cell.mTitle.text = "Snow White and the Seven Dwarves"
         
-//        if let url = "https://image.tmdb.org/t/p/w500" + searchResults[indexPath.row]["poster_path"].string! {
-//            apiFetcher.fetchImage(url: url, completionHandler: { image, _ in
-//                cell.mImage.image = image
-//            })
-//        }
+        //"https://image.tmdb.org/t/p/w500" + searchResults["results"][0]["poster_path"].string!
+        apiFetcher.fetchImage(url: "https://image.tmdb.org/t/p/w500" + searchResults[indexPath.row]["poster_path"].string!, completionHandler: { image, _ in
+            cell.mImage.image = image
+        })
         
         return cell
         

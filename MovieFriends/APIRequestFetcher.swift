@@ -21,27 +21,33 @@ class APIRequestFetcher {
     
     func search(searchText: String, completionHandler: @escaping ([JSON]?, NetworkError) -> ()) {
         
-        let urlToSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + searchText
-        print(urlToSearch)
+        let str = searchText
+        let replaced = str.replacingOccurrences(of: " ", with: "-")
+        let urlToSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + replaced
+        //print(urlToSearch)
         
         Alamofire.request(urlToSearch).responseJSON { response in
             guard let data = response.data else {
                 completionHandler(nil, .failure)
+                //print("Pam")
                 return
             }
             
             let json = try? JSON(data: data)
-            let results = json?["total_results"]["total_pages"].arrayValue
+            let results = json?["results"].arrayValue
             guard let empty = results?.isEmpty, !empty else {
                 completionHandler(nil, .failure)
+                //print("Juan")
                 return
             }
+            print("Iron Man")
             
             completionHandler(results, .success)
         }
     }
     
     func fetchImage(url: String, completionHandler: @escaping (UIImage?, NetworkError) -> ()) {
+        
         Alamofire.request(url).responseData { responseData in
             
             guard let imageData = responseData.data else {
