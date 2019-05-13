@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MyProfileViewController: UIViewController {
 
@@ -14,15 +15,37 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var bio: UITextView!
     @IBOutlet weak var profPic: UIImageView!
     
-    var nameText: String = "Hello"
+    var person: [NSManagedObject] = []
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        name.text = nameText
-        print(name.text)
+        
+        //name.text = finalName
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Profile")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                name.text = data.value(forKey: "name") as? String
+                bio.text = data.value(forKey: "bio") as? String
+                profPic.image = UIImage(data: data.value(forKey: "profilepic") as! Data)
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
 
 }

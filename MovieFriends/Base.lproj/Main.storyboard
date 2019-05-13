@@ -415,9 +415,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="p2z-kb-apt" kind="relationship" relationship="viewControllers" id="Sk6-Vq-zd3"/>
-                        <segue destination="JtM-hN-ECq" kind="relationship" relationship="viewControllers" id="0tK-Fz-XVR"/>
                         <segue destination="IQo-Zk-u5H" kind="relationship" relationship="viewControllers" id="gqw-3Y-TDd"/>
+                        <segue destination="JtM-hN-ECq" kind="relationship" relationship="viewControllers" id="0tK-Fz-XVR"/>
+                        <segue destination="p2z-kb-apt" kind="relationship" relationship="viewControllers" id="Sk6-Vq-zd3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOg-yT-rar" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -483,7 +483,7 @@
                             <outlet property="delegate" destination="JtM-hN-ECq" id="rv0-ua-PwI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Search" id="AXf-vL-Tf6" userLabel="Search"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="AXf-vL-Tf6" userLabel="Search"/>
                     <connections>
                         <outlet property="searchBar" destination="u1j-yF-5zs" id="yaa-3H-WaH"/>
                     </connections>
@@ -584,7 +584,9 @@
                                 <rect key="frame" x="16" y="569" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.0" green="0.47617390641935842" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="saveButtonClicked:" destination="a2Y-IW-1da" eventType="touchUpInside" id="Oym-pY-tPh"/>
                                 </connections>
@@ -617,18 +619,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNw-6h-tBc">
-                                <rect key="frame" x="16" y="383" width="128" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-Oz-NoM">
-                                <rect key="frame" x="167" y="432" width="99" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Change Image"/>
-                                <connections>
-                                    <action selector="changeImageButton:" destination="a2Y-IW-1da" eventType="touchUpInside" id="ED5-8q-IEI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJ1-2g-u1V">
                                 <rect key="frame" x="16" y="69" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -636,14 +626,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="oNw-6h-tBc">
+                                <rect key="frame" x="62" y="390" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-Oz-NoM">
+                                <rect key="frame" x="213" y="439" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change Image">
+                                    <color key="titleColor" red="0.75020102281009193" green="0.92103069100244472" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeImageButton:" destination="a2Y-IW-1da" eventType="touchUpInside" id="ED5-8q-IEI"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="g3p-EO-DIM"/>
                     </view>
                     <connections>
                         <outlet property="descTextView" destination="KUz-XR-6JG" id="jhq-Q7-kKf"/>
                         <outlet property="nameTextField" destination="IHE-bj-xVn" id="vpb-9M-yJK"/>
                         <outlet property="profImage" destination="oNw-6h-tBc" id="9wb-qb-7Dw"/>
+                        <segue destination="p2z-kb-apt" kind="presentation" identifier="editprof" id="otf-U5-f4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYQ-PJ-ysE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -652,7 +657,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default" width="300" height="300"/>
         <image name="hamster" width="800" height="450"/>
         <image name="titanic" width="1371" height="2016"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="otf-U5-f4c"/>
+    </inferredMetricsTieBreakers>
 </document>
