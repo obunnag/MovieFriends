@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A0E4B222289448300C18C19 /* APIRequestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E4B212289448300C18C19 /* APIRequestFetcher.swift */; };
 		6A845FB1226D798100DF6AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A845FB0226D798100DF6AB1 /* AppDelegate.swift */; };
 		6A845FB6226D798100DF6AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A845FB4226D798100DF6AB1 /* Main.storyboard */; };
 		6A845FB9226D798100DF6AB1 /* MovieFriends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A845FB7226D798100DF6AB1 /* MovieFriends.xcdatamodeld */; };
@@ -21,9 +22,14 @@
 		6AC482A82281245100B38FDE /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC482A72281245100B38FDE /* SearchTableViewCell.swift */; };
 		6AEA7EB522729F75003FEE22 /* MyMoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA7EB422729F75003FEE22 /* MyMoviesTableViewController.swift */; };
 		6AEA7EB72272AD70003FEE22 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA7EB62272AD70003FEE22 /* HomeViewController.swift */; };
+		960B6E39EC9FD6324326042B /* Pods_MovieFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E26EBB31F85A0D52DA68ED /* Pods_MovieFriends.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F83637179B78153EC73E038 /* Pods-MovieFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFriends.release.xcconfig"; path = "Target Support Files/Pods-MovieFriends/Pods-MovieFriends.release.xcconfig"; sourceTree = "<group>"; };
+		6237DBB97C26833267862C66 /* Pods-MovieFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFriends.debug.xcconfig"; path = "Target Support Files/Pods-MovieFriends/Pods-MovieFriends.debug.xcconfig"; sourceTree = "<group>"; };
+		66E26EBB31F85A0D52DA68ED /* Pods_MovieFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0E4B212289448300C18C19 /* APIRequestFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestFetcher.swift; sourceTree = "<group>"; };
 		6A845FAD226D798100DF6AB1 /* MovieFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A845FB0226D798100DF6AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A845FB5226D798100DF6AB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960B6E39EC9FD6324326042B /* Pods_MovieFriends.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +65,8 @@
 			children = (
 				6A845FAF226D798100DF6AB1 /* MovieFriends */,
 				6A845FAE226D798100DF6AB1 /* Products */,
+				EA6A9D378DB886446F3DEBB5 /* Pods */,
+				CDE37F8E0789A89ADDF34812 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,8 +96,26 @@
 				6AC482A72281245100B38FDE /* SearchTableViewCell.swift */,
 				6A9FE76D2288C7070007BF0B /* EditProfileViewController.swift */,
 				6A9FE76F2288CEB70007BF0B /* MyProfileViewController.swift */,
+				6A0E4B212289448300C18C19 /* APIRequestFetcher.swift */,
 			);
 			path = MovieFriends;
+			sourceTree = "<group>";
+		};
+		CDE37F8E0789A89ADDF34812 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66E26EBB31F85A0D52DA68ED /* Pods_MovieFriends.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA6A9D378DB886446F3DEBB5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6237DBB97C26833267862C66 /* Pods-MovieFriends.debug.xcconfig */,
+				1F83637179B78153EC73E038 /* Pods-MovieFriends.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A845FC2226D798200DF6AB1 /* Build configuration list for PBXNativeTarget "MovieFriends" */;
 			buildPhases = (
+				464EBB07ED4E13A9141F8DDD /* [CP] Check Pods Manifest.lock */,
 				6A845FA9226D798100DF6AB1 /* Sources */,
 				6A845FAA226D798100DF6AB1 /* Frameworks */,
 				6A845FAB226D798100DF6AB1 /* Resources */,
+				F8A7A662B9633EC4B753C924 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,6 +186,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		464EBB07ED4E13A9141F8DDD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MovieFriends-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8A7A662B9633EC4B753C924 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MovieFriends/Pods-MovieFriends-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieFriends/Pods-MovieFriends-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6A845FA9226D798100DF6AB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -168,6 +246,7 @@
 				6AEA7EB522729F75003FEE22 /* MyMoviesTableViewController.swift in Sources */,
 				6AC482A22280E2AE00B38FDE /* InfoViewController.swift in Sources */,
 				6A845FB1226D798100DF6AB1 /* AppDelegate.swift in Sources */,
+				6A0E4B222289448300C18C19 /* APIRequestFetcher.swift in Sources */,
 				6A9FE7702288CEB70007BF0B /* MyProfileViewController.swift in Sources */,
 				6AC482A42280FE0F00B38FDE /* MyMoviesTableViewCell.swift in Sources */,
 				6A9BC4CB2280125600C82F67 /* SwiftyJSON.swift in Sources */,
@@ -316,6 +395,7 @@
 		};
 		6A845FC3226D798200DF6AB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6237DBB97C26833267862C66 /* Pods-MovieFriends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -333,6 +413,7 @@
 		};
 		6A845FC4226D798200DF6AB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F83637179B78153EC73E038 /* Pods-MovieFriends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

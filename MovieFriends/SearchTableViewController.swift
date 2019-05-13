@@ -7,22 +7,56 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 
     @IBOutlet weak var searchBar: UITextField!
     
-    var total: Int = 0
+    private var searchResults = [JSON]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    let baseURL = "https://api.themoviedb.org/3/search/movie?api_key="
-    let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let apiFetcher = APIRequestFetcher()
+    private var previousRun = Date()
+    private let minInterval = 0.05
+    
+//    var total: Int = 0
+//
+//    let baseURL = "https://api.themoviedb.org/3/search/movie?api_key="
+//    let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
     var query: String = ""
-    var mImage: UIImage? = nil
-    var mTitle: String = ""
+//    var mImage: UIImage? = nil
+//    var mTitle: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchBar.delegate = self as? UITextFieldDelegate
+        tableView.tableFooterView = UIView()
+        setupTableViewBackgroundView()
+        setupSearchBar()
+        //self.searchBar.delegate = self as? UITextFieldDelegate
+    }
+    
+    private func setupTableViewBackgroundView() {
+        let backgroundViewLabel = UILabel(frame: .zero)
+        backgroundViewLabel.textColor = .darkGray
+        backgroundViewLabel.numberOfLines = 0
+        backgroundViewLabel.text = "Oops, no results to show!"
+        backgroundViewLabel.font.withSize(20)
+        tableView.backgroundView = backgroundViewLabel
+    }
+    
+    private func setupSearchBar() {
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for movie"
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
     
 
@@ -34,7 +68,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return total
+        return searchResults.count
     }
 
     
@@ -44,55 +78,67 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 
         // Configure the cell...
         
-        let url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + query
+        cell.mTitle.text = searchResults[indexPath.row]["title"].string!
+        print("hi")
         
-        let request = URL(string: url)!
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, error) -> Void in
-            
-            if error != nil {
-                
-                print("There was an error!")
-            } else {
-                do {
-                    
-                    let swiftyJSON = try JSON(data: data!)
-                    
-                    //Movie poster
-                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][indexPath.row]["poster_path"].string!
-                    let theImageURL = URL(string: theImage)
-                    
-                    
-                    DispatchQueue.main.async{
-                        if let ImageData = NSData(contentsOf: theImageURL!) {
-                            self.mImage = UIImage(data: ImageData as Data)!
-                        }
-                        
-                        self.title = swiftyJSON["results"][indexPath.row]["title"].string!
-                        self.total = swiftyJSON["total_results"].int!
-                    }
-                    
-                    
-                } catch {
-                    //Catch and handle the exception
-                }
-            }
-        }
+//        if let url = "https://image.tmdb.org/t/p/w500" + searchResults[indexPath.row]["poster_path"].string! {
+//            apiFetcher.fetchImage(url: url, completionHandler: { image, _ in
+//                cell.mImage.image = image
+//            })
+//        }
         
-        task.resume()
-        tableView.reloadData()
         return cell
+        
+        
+        //let url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + query
+        
+//        let request = URL(string: url)!
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (data, response, error) -> Void in
+//
+//            if error != nil {
+//
+//                print("There was an error!")
+//            } else {
+//                do {
+//
+//                    let swiftyJSON = try JSON(data: data!)
+//
+//                    //Movie poster
+//                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["results"][indexPath.row]["poster_path"].string!
+//                    let theImageURL = URL(string: theImage)
+//
+//
+//                    DispatchQueue.main.async{
+//                        if let ImageData = NSData(contentsOf: theImageURL!) {
+//                            self.mImage = UIImage(data: ImageData as Data)!
+//                        }
+//
+//                        self.title = swiftyJSON["results"][indexPath.row]["title"].string!
+//                        self.total = swiftyJSON["total_results"].int!
+//                    }
+//
+//
+//                } catch {
+//                    //Catch and handle the exception
+//                }
+//            }
+//        }
+//
+//        task.resume()
+//        tableView.reloadData()
+        //return cell
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        //textField.resignFirstResponder()
-        self.query = searchBar.text ?? ""
-        print(self.query + " searched!")
-        tableView.reloadData()
-        //getJSON()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+//    {
+//        //textField.resignFirstResponder()
+//        self.query = searchBar.text ?? ""
+//        print(self.query + " searched!")
+//        tableView.reloadData()
+//        //getJSON()
+//        return true
+//    }
  
 //    func getJSON() {
 //        let url = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + query
@@ -136,52 +182,44 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate{
 //        task.resume()
 //    }
     
- 
+
+
+}
+
+extension SearchTableViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchResults.removeAll()
+        guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
+            return
+        }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        
+        if Date().timeIntervalSince(previousRun) > minInterval {
+            previousRun = Date()
+            fetchResults(for: textToSearch)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func fetchResults(for text: String) {
+        print("Text Searched: \(text)")
+        apiFetcher.search(searchText: text, completionHandler: {
+            [weak self] results, error in
+            if case .failure = error {
+                return
+            }
+            
+            guard let results = results, !results.isEmpty else {
+                return
+            }
+            
+            self?.searchResults = results
+            self?.tableView.reloadData()
+        })
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchResults.removeAll()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -21,8 +21,6 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        //name.text = finalName
     }
     
     override func viewWillAppear(_ animated: Bool) {

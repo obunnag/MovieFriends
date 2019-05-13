@@ -1,0 +1,6 @@
+framework module Pods_MovieFriends {
+  umbrella header "Pods-MovieFriends-umbrella.h"
+
+  export *
+  module * { export * }
+}
