@@ -10,7 +10,7 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     
-    
+    var movieIDInput: String = ""
     
     @IBOutlet weak var mImage: UIImageView!
     @IBOutlet weak var mTitle: UILabel!

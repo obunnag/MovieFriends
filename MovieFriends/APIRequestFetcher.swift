@@ -24,12 +24,10 @@ class APIRequestFetcher {
         let str = searchText
         let replaced = str.replacingOccurrences(of: " ", with: "-")
         let urlToSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + replaced
-        //print(urlToSearch)
         
         Alamofire.request(urlToSearch).responseJSON { response in
             guard let data = response.data else {
                 completionHandler(nil, .failure)
-                //print("Pam")
                 return
             }
             
@@ -37,10 +35,9 @@ class APIRequestFetcher {
             let results = json?["results"].arrayValue
             guard let empty = results?.isEmpty, !empty else {
                 completionHandler(nil, .failure)
-                //print("Juan")
                 return
             }
-            print("Iron Man")
+            //print("Iron Man")
             
             completionHandler(results, .success)
         }

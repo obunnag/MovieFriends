@@ -26,6 +26,7 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var mRating: UILabel!
     @IBOutlet weak var save: UIButton!
     
+    @IBOutlet weak var RatingView: RatingView!
     
     var chosenImage: UIImage?
     let apiKey = "0518529e7e2dd0cf9c39e55884e0a084"
@@ -35,11 +36,11 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         getJSON()
         // Do any additional setup after loading the view.
+        
     }
     
     func getJSON() {
         let url = "https://api.themoviedb.org/3/movie/" + movieData + "?api_key=" + apiKey
-        
         let request = URL(string: url)!
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) -> Void in
@@ -51,29 +52,46 @@ class InfoViewController: UIViewController {
                 do {
                     
                     let swiftyJSON = try JSON(data: data!)
-                
-                    //Movie poster
-                    let theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["poster_path"].string!
-                    let theImageURL = URL(string: theImage)
                     
-                    //Movie background
-                    let theBack = "https://image.tmdb.org/t/p/w500" + swiftyJSON["backdrop_path"].string!
-                    let theBackURL = URL(string: theBack)
+                    var theImage = ""
+                    var theImageURL: URL
+                    var theBack = ""
+                    var theBackURL: URL
                     
+                    print(self.movieData)
+                    
+                    if swiftyJSON["backdrop_path"].string?.isEmpty ?? true || swiftyJSON["poster_path"].string?.isEmpty ?? true{
+                        theImage = "https://image.tmdb.org/t/p/w500/jdXmMoREwmfZWxtqGyk5Zv0UB6r.jpg"
+                        theImageURL = URL(string: theImage)!
+                        theBack = "https://image.tmdb.org/t/p/w500/ZQixhAZx6fH1VNafFXsqa1B8QI.jpg"
+                        theBackURL = URL(string: theBack)!
+                    }
+                    else{
+                        //Movie poster
+                        theImage = "https://image.tmdb.org/t/p/w500" + swiftyJSON["poster_path"].string!
+                        theImageURL = URL(string: theImage)!
+                        
+                        //Movie background
+                        theBack = "https://image.tmdb.org/t/p/w500" + swiftyJSON["backdrop_path"].string!
+                        theBackURL = URL(string: theBack)!
+                    }
                     DispatchQueue.main.async{
-                        if let ImageData = NSData(contentsOf: theImageURL!) {
+                        if let ImageData = NSData(contentsOf: theImageURL) {
                             self.mImage.image = UIImage(data: ImageData as Data)
                         }
-                        if let BackgroundData = NSData(contentsOf: theBackURL!) {
+                        if let BackgroundData = NSData(contentsOf: theBackURL) {
                             self.mBackground.image = UIImage(data: BackgroundData as Data)
                         }
                         self.mTitle.text = swiftyJSON["title"].string!
                         self.mRelease.text = "Released: " + swiftyJSON["release_date"].string!
-                        self.mRuntime.text = String(swiftyJSON["runtime"].int!) + " min"
+                        self.mRuntime.text = String(swiftyJSON["runtime"].int ?? 120) + " min"
                         self.mOverview.text = swiftyJSON["overview"].string!
-                        self.mRating.text = "Avg Rating: " + String(swiftyJSON["vote_average"].int!)
+                        self.mRating.text = String(swiftyJSON["vote_average"].int!)
                         self.idNum = String(swiftyJSON["id"].int!)
-                    
+                        
+                        
+                        self.RatingView.counter = Int(self.mRating.text!) ?? 3
+                        print(self.mRating.text)
                     
                     }
                     
